@@ -31,20 +31,8 @@ The 8 KiB VRAM window is **not** the full video memory size. The RP2040 has 264 
 
 ## Fixed I/O allocations
 
-| Port | Device / function |
-|---|---|
-| `00` | 8251A data: receive/read, transmit/write |
-| `01` | 8251A status/read, mode-command/write |
-| `02–0F` | Reserved |
-| `10` | 8255A #1 Port A |
-| `11` | 8255A #1 Port B |
-| `12` | 8255A #1 Port C |
-| `13` | 8255A #1 control |
-| `14` | 8255A #2 Port A |
-| `15` | 8255A #2 Port B |
-| `16` | 8255A #2 Port C |
-| `17` | 8255A #2 control |
-| `18–FF` | Reserved / expansion |
+<img width="349" height="501" alt="image" src="https://github.com/user-attachments/assets/7cab82fc-a444-4626-9435-2db9193f156f" />
+
 
 **All video and audio registers are memory-mapped, not I/O-mapped.** The 8251A and two 8255As are I/O-mapped.
 
