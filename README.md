@@ -51,8 +51,8 @@ The 8251A and two 8255As are I/O-mapped.
 
 ## Board documentation
 
-- [PCB 1 — CPU, ROM, RAM, reset and bus](docs/01-cpu-board.md)
-- [PCB 2 — Serial, 8255s, keyboard and SNES](docs/02-io-board.md)
-- [PCB 3 — RP2040 VGA, audio and VRAM](docs/03-video-audio.md)
+- [PCB 1 — CPU, ROM, RAM, reset and bus](01-cpu-board/01-cpu-board.md)
+- [PCB 2 — Serial, 8255s, keyboard and SNES](02-io-board/02-io-board.md)
+- [PCB 3 — RP2040 VGA, audio and VRAM](03-video-audio/03-video-audio.md)
 
 
