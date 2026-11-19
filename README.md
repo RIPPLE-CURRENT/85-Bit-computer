@@ -39,14 +39,12 @@ The 8 Kb VRAM window is **not** the full video memory size. The RP2040 has 264 K
 
 ## Fixed I/O allocations
 <p align="center">
-<img width="536" height="267" alt="image" src="https://github.com/user-attachments/assets/7eeaa759-3996-44ba-be3e-b5f0fb2adc9c" />
+
+ <img width="1536" height="1024" alt="8085 Monitor System Infographic (1)" src="https://github.com/user-attachments/assets/40150d1f-bed4-480e-8c5f-bcf5b7160e02" />
+ 
+
 </p>
-<p align="center">
-<img width="349" height="501" alt="image" src="https://github.com/user-attachments/assets/7cab82fc-a444-4626-9435-2db9193f156f" />
-</p>
-<p align="center">
-<img width="536" height="235" alt="image" src="https://github.com/user-attachments/assets/b18a7fd7-49a0-411b-916f-6c54490798ac" />
-</p>
+
 The 8251A and two 8255As are I/O-mapped.
 
 ## Board documentation
