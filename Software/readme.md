@@ -11,3 +11,4 @@ BIOS address	Routine	Input	Result
 0118H	PUTBIN8	A = 8-bit value	Prints eight binary digits
 011BH	TOUPPER	A = ASCII character	Returns uppercase character in A
 0121H	CLS	None	Clears an ANSI-compatible terminal
+   
