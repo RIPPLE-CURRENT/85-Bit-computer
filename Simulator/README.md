@@ -1,6 +1,7 @@
 <div align="center">
 
-<img src="85bit-logo.png" alt="85-BIT retro computing logo" width="620">
+<img width="1395" height="650" alt="image" src="https://github.com/user-attachments/assets/4a51878a-2587-4fcc-8ee6-15e93d3b01f4" />
+
 
 # 85-BIT — Intel 8085 Development Studio
 
