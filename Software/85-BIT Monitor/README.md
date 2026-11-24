@@ -97,6 +97,8 @@ All arguments are hexadecimal without an `H` suffix. Enter the specified number 
 | `FF00H–FFFFH` | 256 B | Reserved system stack region |
 
 The firmware restricts `E`, `G` and Intel HEX data writes to user RAM. This is monitor-level protection, not hardware memory protection against arbitrary user code.
+
+
 <img width="783" height="449" alt="image" src="https://github.com/user-attachments/assets/b0108b41-8e58-4901-aa74-b207a431173e" />
 
 ### BIOS workspace
