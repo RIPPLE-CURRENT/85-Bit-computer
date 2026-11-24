@@ -12,18 +12,8 @@ Software can be developed and tested using the 85-BIT Intel 8085 Development Stu
 
 | Project | Description | Status |
 |---|---|---|
-| [85-BIT Monitor](./85-BIT%20Monitor/) | BIOS and ROM monitor providing serial communication, memory inspection and editing, I/O access, Intel HEX loading, program execution and CPU register inspection. | V1.0 — Working in simulator |
+| [85-BIT Monitor](./85-BIT%20Monitor/) | BIOS and ROM monitor providing serial communication, memory inspection and editing, I/O access, Intel HEX loading, program execution and CPU register inspection. | V1.1 — Working in simulator |
 
-## System memory map
-
-| Address range | Size | Function |
-|---|---:|---|
-| `0000H–3FFFH` | 16 KiB | System ROM |
-| `4000H–5FFFH` | 8 KiB | Expansion |
-| `6000H–7FFFH` | 8 KiB | Bank-switched video RAM (planned) |
-| `8000H–FDFFH` | 31.5 KiB | User program RAM |
-| `FE00H–FEFFH` | 256 bytes | BIOS workspace |
-| `FF00H–FFFFH` | 256 bytes | System stack |
 
 ## Software development
 
