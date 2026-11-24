@@ -6,7 +6,7 @@
 
 **A serial-controlled firmware environment for the Intel 8085A computer.**
 
-![CPU](https://img.shields.io/badge/CPU-Intel%208085A-orange) ![Assembly](https://img.shields.io/badge/Language-8085%20Assembly-blue) ![Version](https://img.shields.io/badge/Version-1.0-green) ![ROM](https://img.shields.io/badge/ROM-16%20KiB-purple)
+![CPU](https://img.shields.io/badge/CPU-Intel%208085A-orange) ![Assembly](https://img.shields.io/badge/Language-8085%20Assembly-blue) ![Version](https://img.shields.io/badge/Version-1.1-green) ![ROM](https://img.shields.io/badge/ROM-16%20KiB-purple)
 
 </div>
 
@@ -14,7 +14,7 @@
 
 The 85-BIT BIOS and ROM Monitor provides a resident firmware interface for developing, loading and executing programs on the 85-BIT computer. Written in Intel 8085 assembly, it communicates through an Intel 8251A USART and provides a fixed BIOS jump table for application software.
 
-The monitor runs on the emulated or physical CPU itself; it is not a command interpreter implemented by the simulator. Version 1.0 has been exercised in the 85-BIT simulator. Physical hardware validation remains a separate step.
+The monitor runs on the emulated or physical CPU itself; it is not a command interpreter implemented by the simulator. Version 1.1 optimises the ROM layout and shared routines while retaining the version 1.0 BIOS API. Physical hardware validation remains a separate step.
 
 ## Documentation
 
@@ -22,7 +22,7 @@ The monitor runs on the emulated or physical CPU itself; it is not a command int
 |---|---|
 | [ROM Monitor User Manual](docs/85BIT_ROM_Monitor_User_Manual.pdf) | Startup, command syntax, examples and troubleshooting |
 | [BIOS & ROM Monitor Technical Reference](docs/85BIT_BIOS_Monitor_Technical_Reference.pdf) | Firmware architecture, memory allocation, API and internal routines |
-| [Firmware source](85BIT_BIOS_Monitor_V1.0.asm) | Complete 8085 assembly source |
+| [Firmware source](85BIT_BIOS_Monitor_V1.1.asm) | Complete 8085 assembly source |
 
 ## Features
 
@@ -39,7 +39,7 @@ The monitor runs on the emulated or physical CPU itself; it is not a command int
 
 ### Simulator
 
-1. Open `85BIT_BIOS_Monitor_V1.0.asm` in the 85-BIT simulator.
+1. Open `85BIT_BIOS_Monitor_V1.1.asm` in the 85-BIT simulator.
 2. Assemble the source, reset the CPU and run from `0000H`.
 3. Open the serial terminal and enter `H` followed by Enter.
 
@@ -105,7 +105,8 @@ The firmware restricts `E`, `G` and Intel HEX data writes to user RAM. This is m
 | `FE00H–FE3FH` | Command input buffer |
 | `FE40H–FE42H` | Dynamic `IN` / `OUT` instruction stub |
 | `FE43H–FE7FH` | BIOS variables / reserved |
-| `FE80H–FE8CH` | CPU register snapshot and validity flag |
+| `FE80H–FE8BH` | CPU register snapshot
+| `FEFFH` | Snapshot validity flag (outside HEX buffer) |
 | `FE00H–FEFEH` | Temporary Intel HEX record buffer (overlays workspace) |
 
 The loader invalidates the saved register snapshot when it exits. The stack is initialised to `FFFFH`.
@@ -204,7 +205,20 @@ Enter `R` after the program returns. The saved accumulator is `55H`, BC is `1234
 | `0040H` | Cold-start initialisation |
 | `0100H` | BIOS jump table |
 | `0200H` | BIOS service routines |
-| `1000H` | Monitor command interpreter and handlers |
+| `0400H` | Monitor command interpreter and handlers |
+
+## V1.1 memory optimisation
+
+| Metric | V1.0 | V1.1 |
+|---|---:|---:|
+| ROM address footprint | 6,406 B | 3,169 B |
+| Contiguous free ROM | 9,978 B | 13,215 B |
+| Monitor origin | `1000H` | `0400H` |
+| Last occupied address | `1905H` | `0C60H` |
+
+Free contiguous ROM: `0C61H–3FFFH`. The EEPROM image remains 16 KiB. Shared hexadecimal parsers, RAM range checking and message exits reduce duplication. All eight commands and eleven API entries remain compatible. The loader banner remains V1.0.
+
+Firmware downloads: [ROM binary](85BIT_BIOS_Monitor_V1.1.bin) · [ROM Intel HEX](85BIT_BIOS_Monitor_V1.1.hex). These are EEPROM images, not user RAM loader files.
 
 ## Repository layout
 
@@ -212,7 +226,9 @@ Enter `R` after the program returns. The saved accumulator is `55H`, BC is `1234
 85-BIT-Monitor/
 ├── README.md
 ├── 85bit-logo.png
-├── 85BIT_BIOS_Monitor_V1.0.asm
+├── 85BIT_BIOS_Monitor_V1.1.asm
+├── 85BIT_BIOS_Monitor_V1.1.bin
+├── 85BIT_BIOS_Monitor_V1.1.hex
 └── docs/
     ├── 85BIT_ROM_Monitor_User_Manual.pdf
     └── 85BIT_BIOS_Monitor_Technical_Reference.pdf
