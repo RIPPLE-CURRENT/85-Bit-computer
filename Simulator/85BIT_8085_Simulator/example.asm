@@ -1,0 +1,18 @@
+; 8085 UART greeting and echo. 8251 DATA=00H, STATUS=01H
+ORG 0000H
+START: LXI SP,0FFFEH
+       LXI H,HELLO
+PRINT: MOV A,M
+       ORA A
+       JZ ECHO
+       OUT 00H
+       INX H
+       JMP PRINT
+ECHO:  IN 01H
+       ANI 02H
+       JZ ECHO
+       IN 00H
+       OUT 00H
+       JMP ECHO
+HELLO: DB '8085 READY',13,10,0
+END START
